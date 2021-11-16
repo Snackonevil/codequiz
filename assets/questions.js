@@ -4,8 +4,18 @@ var questions = [
         "answers": [
             ["strings"],
             ["booleans"],
-            ["alerts", "correct"],
+            ["alerts", true],
             ["numbers"]
         ]
     },
+
+    {
+        "text": "The condition in an if/else statement is enclosed within ______.",
+        "answers": [
+            ["quotes"],
+            ["curly brackets", true],
+            ["parentheses"],
+            ["square brackets"]
+        ]
+    }
 ]

@@ -1,41 +1,99 @@
 // variables to keep track of quiz state
 
-
+var currQues = 0
 
 // variables to reference DOM elements
-var questionBlock = document.getElementById('question-block');
-var questionText = document.getElementById('question-txt');
-var answerBlock = document.getElementById('answer-block');
+const questionBlock = document.getElementById('question-block');
+const questionText = document.getElementById('question-txt');
+const answerBlock = document.getElementById('answer-block');
+const timer = document.getElementById('timer');
 
 
+// var answerBtns = document.getElementsByClassName('answer-btn');
+answerBlock.addEventListener('click', submitAns)
 
 
 var startBtn = document.getElementById('start-btn');
 startBtn.addEventListener('click', letsGo)
-
 const nextBtn = document.getElementById('next-btn')
+nextBtn.addEventListener('click', nextQuest)
 
 function letsGo() {
   startBtn.setAttribute("class", "hide");
   questionBlock.removeAttribute("class", "hide");
   answerBlock.removeAttribute("class", "hide")
-  // startClock();
-  nextQuest();
-}
-
-function nextQuest() {
-  answerBlock.innerHTML = ''
-  questionText.textContent = questions[0].text
-
-  for (let i = 0; i < questions[0].answers.length; i++) {
+  // nextBtn.removeAttribute("class", "hide")
+  questionText.textContent = questions[currQues].text
+  for (let i = 0; i < questions[currQues].answers.length; i++) {
     var button = document.createElement("button");
     answerBlock.appendChild(button);// appends button element per iteration
     button.setAttribute("class", "answer-btn");// Set 'answer-btn' class
     button.setAttribute("id", `ans-${i}`) // Set new ID per iteration
-    button.textContent = questions[0].answers[i][0];// writes 0 index of each array in 'answers' array
+    button.textContent = questions[currQues].answers[i][0];// writes 0 index of each array in 'answers' array
+    if (questions[currQues].answers[i].length === 2) {
+      button.setAttribute('data-correct', 'correct')
+    }
+  };
+  startClock();
+}
+
+function startClock() {
+  var time = 30
+  timer.textContent = "00:30"
+  var countDown = setInterval(() => {
+    time--;
+    timer.textContent = time
+  
+    if (time === 0) {
+      clearInterval(countDown)
+    }
+  }, 1000);
+}
+
+function nextQuest() {
+  currQues++;
+  answerBlock.textContent = ''
+  questionText.textContent = ''
+  questionText.textContent = questions[currQues].text
+
+  for (let i = 0; i < questions[currQues].answers.length; i++) {
+    var button = document.createElement("button");
+    answerBlock.appendChild(button);// appends button element per iteration
+    button.setAttribute("class", "answer-btn");// Set 'answer-btn' class
+    button.setAttribute("id", `ans-${i}`) // Set new ID per iteration
+    button.textContent = questions[currQues].answers[i][0];// writes 0 index of each array in 'answers' array
+      if (questions[currQues].answers[i].length === 2) {
+      button.setAttribute('data-correct', 'correct')
+      }
+  }
+}
+
+function submitAns(e) {
+  if (e.target.dataset.correct === "correct") {
+    alert('CORRECT');
+    return nextQuest();
+  } else {
+    alert('incorrect')
+    return nextQuest();
   }
 
+
+  // var answer = e.target.textContent
+  // for (let i = 0; i < questions[currQues].answers.length; i++) {
+  //   var options = questions[currQues].answers[i];
+  //   if (options[0] === answer && options.length === 2 )  {
+  //     alert('nice');
+  //     return nextQuest();
+  //   } 
+//     } else if (options[0] !== answer && options.length !== 2) {
+//       alert('incorrecto')
+//       return nextQuest();
+//     }
 }
+
+
+// && questions[currQues].answers[i].length === 2)
+
 //function to get the quiz going 
 
 //function to pull each question
