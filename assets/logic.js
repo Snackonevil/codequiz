@@ -7,20 +7,34 @@ var questionBlock = document.getElementById('question-block');
 var questionText = document.getElementById('question-txt');
 var answerBlock = document.getElementById('answer-block');
 
-var start = document.getElementById('start-btn');
-start.addEventListener('click', letsGo)
+
+
+
+var startBtn = document.getElementById('start-btn');
+startBtn.addEventListener('click', letsGo)
+
+const nextBtn = document.getElementById('next-btn')
 
 function letsGo() {
-  start.setAttribute("class", "hide");
+  startBtn.setAttribute("class", "hide");
+  questionBlock.removeAttribute("class", "hide");
+  answerBlock.removeAttribute("class", "hide")
   // startClock();
   nextQuest();
 }
 
 function nextQuest() {
-  questionBlock.removeAttribute("class", "hide")
-  console.log(questions[0].answers[0])
-  questions[0].answers.forEach(() => {questions[0].answers[0]})
-  // questions[0].answers.forEach(console.log('a'))
+  answerBlock.innerHTML = ''
+  questionText.textContent = questions[0].text
+
+  for (let i = 0; i < questions[0].answers.length; i++) {
+    var button = document.createElement("button");
+    answerBlock.appendChild(button);// appends button element per iteration
+    button.setAttribute("class", "answer-btn");// Set 'answer-btn' class
+    button.setAttribute("id", `ans-${i}`) // Set new ID per iteration
+    button.textContent = questions[0].answers[i][0];// writes 0 index of each array in 'answers' array
+  }
+
 }
 //function to get the quiz going 
 

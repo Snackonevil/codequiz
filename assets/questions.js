@@ -1,11 +1,11 @@
 var questions = [
     {
-        "text": "",
+        "text": "Commonly used data types DO NOT include which of the following:",
         "answers": [
-            {"a": "c"},
-            {"b": "c"},
-            {"c": "c", "correct": true},
-            {"d": "c"}   
+            ["strings"],
+            ["booleans"],
+            ["alerts", "correct"],
+            ["numbers"]
         ]
     },
 ]
