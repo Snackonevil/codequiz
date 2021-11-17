@@ -8,19 +8,17 @@ const questionBlock = document.getElementById('question-block');
 const questionText = document.getElementById('question-txt');
 const answerBlock = document.getElementById('answer-block');
 const timer = document.getElementById('timer');
-
+const startBtn = document.getElementById('start-btn');
 
 // var answerBtns = document.getElementsByClassName('answer-btn');
-answerBlock.addEventListener('click', submitAns)
 
 
-const startBtn = document.getElementById('start-btn');
-startBtn.addEventListener('click', letsGo)
+
 const nextBtn = document.getElementById('next-btn')
 // nextBtn.addEventListener('click', nextQuest)
 
 // Starts Quiz
-function letsGo() {
+let letsGo = () => {
   //Hide start button and reveal question and answers
   startBtn.setAttribute("class", "hide");
   questionBlock.removeAttribute("class", "hide");
@@ -28,26 +26,15 @@ function letsGo() {
   // nextBtn.removeAttribute("class", "hide")
   questionText.textContent = questions[currQues].text// writes question text
 
-  // loop that iterates through answers, creating and appending an element to each one.
-  questions[currQues].answers.forEach(function (answer, i) {
-    var button = document.createElement("button");
-    answerBlock.appendChild(button);// appends button element per iteration
-    button.setAttribute("class", "answer-btn");// Set 'answer-btn' class
-    button.setAttribute("id", `ans-${i}`); // Set new ID per iteration
-    button.textContent = answer[0];// writes 0 index of each array in 'answers' array
-    
-    // Add dataset 'correct' to correct answer, array length of 2
-    if (questions[currQues].answers[i].length === 2) {
-      button.setAttribute('data-correct', 'correct')
-    }
-  })
+  // writes following question
+  nextQuest();
 
   // Begin timer
   startClock();
 };
 
 // Runs timer
-function startClock() {
+let startClock = () => {
   timer.textContent = "Time left: 30"
   var countDown = setInterval(() => {
     currTime--;
@@ -63,8 +50,8 @@ function startClock() {
 };
 
 // Goes to next question
-function nextQuest() {
-  currQues++; // Next question object
+let nextQuest = () => {
+
   // Calls quizEnd() if done with questions array
   if (questions[currQues] === undefined) {
     return quizEnd();
@@ -75,7 +62,7 @@ function nextQuest() {
   questionText.textContent = questions[currQues].text // Writes question text
 
   //For loop to write possible answers
-  questions[currQues].answers.forEach(function (answer, i) {
+  questions[currQues].answers.forEach((answer, i) => {
     var button = document.createElement("button");
     answerBlock.appendChild(button);// appends button element per iteration
     button.setAttribute("class", "answer-btn");// Set 'answer-btn' class
@@ -87,14 +74,14 @@ function nextQuest() {
       button.setAttribute('data-correct', 'correct')
     }
   })
+  currQues++; // Next question object
 };
 
-function submitAns(e) {
+let submitAns = (e) => {
   if (e.target.dataset.correct === "correct") {
     alert('CORRECT');
     currScore += 5;
     nextQuest();
-
   } else {
     alert('incorrect');
     nextQuest();
@@ -102,7 +89,7 @@ function submitAns(e) {
   }
 };
 
-function quizEnd() {
+let quizEnd = () => {
   currTime = 0
   timer.textContent = ''
   answerBlock.textContent = ''
@@ -111,22 +98,6 @@ function quizEnd() {
   nextBtn.removeAttribute("class", "hide")
 };
 
-
-  // var answer = e.target.textContent
-  // for (let i = 0; i < questions[currQues].answers.length; i++) {
-  //   var options = questions[currQues].answers[i];
-  //   if (options[0] === answer && options.length === 2 )  {
-  //     alert('nice');
-  //     return nextQuest();
-  //   } 
-//     } else if (options[0] !== answer && options.length !== 2) {
-//       alert('incorrecto')
-//       return nextQuest();
-//     }
-
-
-
-// && questions[currQues].answers[i].length === 2)
 
 //function to get the quiz going 
 
@@ -171,3 +142,6 @@ function quizEnd() {
 
 
 // user clicks button to start quiz
+
+startBtn.addEventListener('click', letsGo)
+answerBlock.addEventListener('click', submitAns)
