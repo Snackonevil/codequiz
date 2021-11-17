@@ -19,33 +19,33 @@ var questions = [
         ]
     },
 
-//     {
-//         "text": "Arrays in JavaScript can be used to store ____.",
-//         "answers": [
-//             ["numbers and strings"],
-//             ["other arrays"],
-//             ["booleans"],
-//             ["all of the above", true]
-//         ]
-//     },
+    {
+        "text": "Arrays in JavaScript can be used to store ____.",
+        "answers": [
+            ["numbers and strings"],
+            ["other arrays"],
+            ["booleans"],
+            ["all of the above", true]
+        ]
+    },
 
-//     {
-//         "text": "String values must be enclosed within ____ when being assigned to variables.",
-//         "answers": [
-//             ["commas"],
-//             ["curly brackets"],
-//             ["quotes", true],
-//             ["parentheses"]
-//         ]
-//     },
+    {
+        "text": "String values must be enclosed within ____ when being assigned to variables.",
+        "answers": [
+            ["commas"],
+            ["curly brackets"],
+            ["quotes", true],
+            ["parentheses"]
+        ]
+    },
 
-//     {
-//         "text": "A very useful tool used during development and debugging for printing content to the debugger is:",
-//         "answers": [
-//             ["setInterval()"],
-//             ["document.querySelector()"],
-//             ["object.forEach()"],
-//             ["console.log()", true]
-//         ]
-//     }
+    {
+        "text": "A very useful tool used during development and debugging for printing content to the debugger is:",
+        "answers": [
+            ["setInterval()"],
+            ["document.querySelector()"],
+            ["object.forEach()"],
+            ["console.log()", true]
+        ]
+    }
 ]

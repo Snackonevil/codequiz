@@ -17,7 +17,7 @@ answerBlock.addEventListener('click', submitAns)
 const startBtn = document.getElementById('start-btn');
 startBtn.addEventListener('click', letsGo)
 const nextBtn = document.getElementById('next-btn')
-nextBtn.addEventListener('click', nextQuest)
+// nextBtn.addEventListener('click', nextQuest)
 
 // Starts Quiz
 function letsGo() {
@@ -28,22 +28,23 @@ function letsGo() {
   // nextBtn.removeAttribute("class", "hide")
   questionText.textContent = questions[currQues].text// writes question text
 
-  // For loop that iterates through answers, creating and appending an element to each one.
-  for (let i = 0; i < questions[currQues].answers.length; i++) {
+  // loop that iterates through answers, creating and appending an element to each one.
+  questions[currQues].answers.forEach(function (answer, i) {
     var button = document.createElement("button");
     answerBlock.appendChild(button);// appends button element per iteration
     button.setAttribute("class", "answer-btn");// Set 'answer-btn' class
-    button.setAttribute("id", `ans-${i}`) // Set new ID per iteration
-    button.textContent = questions[currQues].answers[i][0];// writes 0 index of each array in 'answers' array
-
+    button.setAttribute("id", `ans-${i}`); // Set new ID per iteration
+    button.textContent = answer[0];// writes 0 index of each array in 'answers' array
+    
     // Add dataset 'correct' to correct answer, array length of 2
     if (questions[currQues].answers[i].length === 2) {
       button.setAttribute('data-correct', 'correct')
     }
-  };
+  })
+
   // Begin timer
   startClock();
-}
+};
 
 // Runs timer
 function startClock() {
@@ -74,16 +75,18 @@ function nextQuest() {
   questionText.textContent = questions[currQues].text // Writes question text
 
   //For loop to write possible answers
-  for (let i = 0; i < questions[currQues].answers.length; i++) {
+  questions[currQues].answers.forEach(function (answer, i) {
     var button = document.createElement("button");
     answerBlock.appendChild(button);// appends button element per iteration
     button.setAttribute("class", "answer-btn");// Set 'answer-btn' class
-    button.setAttribute("id", `ans-${i}`) // Set new ID per iteration
-    button.textContent = questions[currQues].answers[i][0];// Writes 0 index of each array in 'answers' array
-      if (questions[currQues].answers[i].length === 2) {
+    button.setAttribute("id", `ans-${i}`); // Set new ID per iteration
+    button.textContent = answer[0];// writes 0 index of each array in 'answers' array
+    
+    // Add dataset 'correct' to correct answer, array length of 2
+    if (questions[currQues].answers[i].length === 2) {
       button.setAttribute('data-correct', 'correct')
-      }
-  }
+    }
+  })
 };
 
 function submitAns(e) {
@@ -106,7 +109,6 @@ function quizEnd() {
   answerBlock.setAttribute("class", "hide");
   questionText.textContent = 'Your Score: ' + currScore;
   nextBtn.removeAttribute("class", "hide")
-
 };
 
 
