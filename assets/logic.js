@@ -1,7 +1,7 @@
 // variables to keep track of quiz state
-
 var currQues = 0
 var currScore = 0
+var currTime = 30
 
 // variables to reference DOM elements
 const questionBlock = document.getElementById('question-block');
@@ -14,7 +14,7 @@ const timer = document.getElementById('timer');
 answerBlock.addEventListener('click', submitAns)
 
 
-var startBtn = document.getElementById('start-btn');
+const startBtn = document.getElementById('start-btn');
 startBtn.addEventListener('click', letsGo)
 const nextBtn = document.getElementById('next-btn')
 nextBtn.addEventListener('click', nextQuest)
@@ -47,24 +47,30 @@ function letsGo() {
 
 // Runs timer
 function startClock() {
-  var time = 30
-  timer.textContent = "00:30"
+  timer.textContent = "Time left: 30"
   var countDown = setInterval(() => {
-    time--;
-    timer.textContent = time;
+    currTime--;
+    timer.textContent = 'Time left: ' + currTime;
   
-    if (time === 0) {
-      clearInterval(countDown)
+    if (currTime === 0 || currTime < 0) {
+      clearInterval(countDown);
+      return quizEnd();
+    } else if (currTime <= 10){
+      timer.setAttribute("style", "color: red")
     }
   }, 1000);
-}
+};
 
 // Goes to next question
 function nextQuest() {
   currQues++; // Next question object
+  // Calls quizEnd() if done with questions array
+  if (questions[currQues] === undefined) {
+    return quizEnd();
+  }
+
   questionText.textContent = '' // Clears question text
   answerBlock.textContent = '' // Clears answer text
-
   questionText.textContent = questions[currQues].text // Writes question text
 
   //For loop to write possible answers
@@ -78,16 +84,30 @@ function nextQuest() {
       button.setAttribute('data-correct', 'correct')
       }
   }
-}
+};
 
 function submitAns(e) {
   if (e.target.dataset.correct === "correct") {
     alert('CORRECT');
-    return nextQuest();
+    currScore += 5;
+    nextQuest();
+
   } else {
-    alert('incorrect')
-    return nextQuest();
+    alert('incorrect');
+    nextQuest();
+    currTime -= 5;
   }
+};
+
+function quizEnd() {
+  currTime = 0
+  timer.textContent = ''
+  answerBlock.textContent = ''
+  answerBlock.setAttribute("class", "hide");
+  questionText.textContent = 'Your Score: ' + currScore;
+  nextBtn.removeAttribute("class", "hide")
+
+};
 
 
   // var answer = e.target.textContent
@@ -101,7 +121,7 @@ function submitAns(e) {
 //       alert('incorrecto')
 //       return nextQuest();
 //     }
-}
+
 
 
 // && questions[currQues].answers[i].length === 2)
