@@ -106,18 +106,28 @@ header > a {
 }
 
 .input {
+    display: block;
     width: 30%;
     height: 30px;
-    margin: 20px 10px;
+    margin: 20px auto;
     font-size: large;
-    align-self: center;
 }
 
-.scorelist {
-    margin-bottom: 15px;
-    list-style-type: none;
-    display: flex;
-    flex-direction: column;
+.scoretable {
+    width: 100%;
+    border-collapse: collapse;
+
+    padding: 10px;
+}
+
+th {
+    text-align: left;
+    padding: 10px;
+}
+
+td {
+    text-align: center;
+    padding: 10px;
 }
 
 .initials {
@@ -136,12 +146,11 @@ header > a {
     font-size: 15pt;
 }
 
-.scorelist li:nth-child(odd) {
+tr:nth-child(odd) {
     background-color: whitesmoke;
 }
 
-#list-container {
+#form-container {
     width: 100%;
-    display: flex;
-    flex-direction: column;
+
 }
