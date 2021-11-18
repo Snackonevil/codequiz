@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <a href="#">View High Scores</a>
+        <a href="./scores.html">View High Scores</a>
         <div id="timer"></div>
     </header>
     <main>
@@ -19,10 +19,23 @@
                 <div id="answer-block" class="">
                 </div>
             </div>
-            <div class="controls">
-                <button id="start-btn" class="">Start</button>
-                <button id="next-btn" class="hide">Next</button>
+
+            <div id="list-container" class="hide">
+                    <ol class="scorelist">
+                        <li>First:<span class="initials">sdf</span><span class="score">score</span></li>
+                        <li>Second:<span class="initials"></span><span class="score"></span></li>
+                        <li>Third:<span class="initials"></span><span class="score"></span></li>
+                    </ol>
+                    <input class="input" type="text" placeholder="Enter your initials" maxlength="3">
             </div>
+
+            <div class="controls">
+                <button id="start-btn" class="btn">Start</button>
+                <button id="next-btn" class="btn hide">Next</button>
+                <button id="submit-btn" class="btn hide">Submit</button>
+                <button id="again-btn" class="btn hide">Play again</button>
+            </div>
+            
         </div>
 
     </main>
@@ -32,5 +45,6 @@
 
     <script src="./assets/questions.js"></script>
     <script src="./assets/logic.js"></script>
+    <script src="./assets/highscores.js"></script>
 </body>
 </html>

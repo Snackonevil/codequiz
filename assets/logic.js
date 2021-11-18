@@ -1,7 +1,7 @@
 // variables to keep track of quiz state
-var currQues = 0
-var currScore = 0
-var currTime = 30
+var currQues = 0;
+var currScore = 0;
+var currTime = 30;
 
 // variables to reference DOM elements
 const questionBlock = document.getElementById('question-block');
@@ -9,21 +9,22 @@ const questionText = document.getElementById('question-txt');
 const answerBlock = document.getElementById('answer-block');
 const timer = document.getElementById('timer');
 const startBtn = document.getElementById('start-btn');
+const submitBtn = document.getElementById('submit-btn');
+const nextBtn = document.getElementById('next-btn');
+
+const scoreList = document.getElementById('list-container')
+
 
 // var answerBtns = document.getElementsByClassName('answer-btn');
 
 
-
-const nextBtn = document.getElementById('next-btn')
-// nextBtn.addEventListener('click', nextQuest)
-
 // Starts Quiz
 let letsGo = () => {
   //Hide start button and reveal question and answers
-  startBtn.setAttribute("class", "hide");
-  questionBlock.removeAttribute("class", "hide");
-  answerBlock.removeAttribute("class", "hide")
-  // nextBtn.removeAttribute("class", "hide")
+  startBtn.classList.add("hide");
+  questionBlock.classList.remove("hide");
+  answerBlock.classList.remove("hide")
+  // nextBtn.classList.remove("hide")
   questionText.textContent = questions[currQues].text// writes question text
 
   // writes following question
@@ -65,13 +66,13 @@ let nextQuest = () => {
   questions[currQues].answers.forEach((answer, i) => {
     var button = document.createElement("button");
     answerBlock.appendChild(button);// appends button element per iteration
-    button.setAttribute("class", "answer-btn");// Set 'answer-btn' class
-    button.setAttribute("id", `ans-${i}`); // Set new ID per iteration
+    button.classList.add("answer-btn");// Set 'answer-btn' class
+    button.classList.add("id", `ans-${i}`); // Set new ID per iteration
     button.textContent = answer[0];// writes 0 index of each array in 'answers' array
     
     // Add dataset 'correct' to correct answer, array length of 2
     if (questions[currQues].answers[i].length === 2) {
-      button.setAttribute('data-correct', 'correct')
+      button.classList.add('data-correct', 'correct')
     }
   })
   currQues++; // Next question object
@@ -93,11 +94,24 @@ let quizEnd = () => {
   currTime = 0
   timer.textContent = ''
   answerBlock.textContent = ''
-  answerBlock.setAttribute("class", "hide");
+  answerBlock.classList.add("hide");
   questionText.textContent = 'Your Score: ' + currScore;
-  nextBtn.removeAttribute("class", "hide")
+  questionText.setAttribute('style', 'text-align: center')
+  nextBtn.classList.remove("hide")
 };
 
+let toScores = () => {
+  questionText.textContent = 'Your Score: ' + currScore;
+  scoreList.classList.remove('hide')
+  nextBtn.classList.add('hide')
+  submitBtn.classList.remove('hide')
+  startBtn.classList.add('hide')
+}
+
+let enterScore = (input) => {
+  input
+  location.href = '.scores.html'
+}
 
 //function to get the quiz going 
 
@@ -145,3 +159,4 @@ let quizEnd = () => {
 
 startBtn.addEventListener('click', letsGo)
 answerBlock.addEventListener('click', submitAns)
+nextBtn.addEventListener('click', toScores);
