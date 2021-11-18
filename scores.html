@@ -7,7 +7,7 @@
     <title>Code Quiz: Highscores</title>
     <link rel="stylesheet" href="./assets/style.css">
 </head>
-<body>
+<body onload="writeScores()">
     <header>
         <a href="#">View High Scores</a>
     </header>
@@ -18,18 +18,18 @@
                 <table class="scoretable">
                     <tr>
                         <th id="first">First</th>
-                        <td>initial</td>
-                        <td>score</td>
+                        <td id="oneInit"></td>
+                        <td id="oneScore"></td>
                     </tr>
                     <tr>
                         <th id="second">Second</th>
-                        <td>initial</td>
-                        <td>score</td>
+                        <td id="twoInit"></td>
+                        <td id="twoScore"></td>
                     </tr>
                     <tr>
                         <th id="third">Third</th>
-                        <td>initial</td>
-                        <td>score</td>
+                        <td id="threeInit"></td>
+                        <td id="threeScore"></td>
                     </tr>
                 </table>
             </div>

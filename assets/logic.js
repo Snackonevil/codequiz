@@ -12,7 +12,7 @@ const startBtn = document.getElementById('start-btn');
 const submitBtn = document.getElementById('submit-btn');
 const nextBtn = document.getElementById('next-btn');
 const scoreTable = document.getElementById('form-container')
-var initials = document.getElementById('input')
+
 
 
 // Starts Quiz
@@ -68,7 +68,7 @@ let nextQuest = () => {
     
     // Add dataset 'correct' to correct answer, array length of 2
     if (questions[currQues].answers[i].length === 2) {
-      button.classList.add('data-correct', 'correct')
+      button.setAttribute('data-correct', 'correct')
     }
   })
   currQues++; // Next question object
@@ -102,11 +102,12 @@ let toScores = () => {
   nextBtn.classList.add('hide')
   submitBtn.classList.remove('hide')
   startBtn.classList.add('hide')
+  writeScores();
 }
 
 let enterScore = () => {
   submitScore();
-  writeScores();
+  // writeScores();
 
 }
 

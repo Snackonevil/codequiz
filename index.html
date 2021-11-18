@@ -15,22 +15,28 @@
     <main>
         <div id="quiz-container">
 
-            <div id="question-block" class="">
+            <div id="question-block" class="hide">
                 <h1 id="question-txt"></h1>
                 <div id="answer-block" class="">
                 </div>
             </div>
 
-            <div id="form-container" class="">
+            <div id="form-container" class="hide">
                 <table class="scoretable">
                     <tr>
                         <th id="first">First</th>
+                        <td id="oneInit"></td>
+                        <td id="oneScore"></td>
                     </tr>
                     <tr>
                         <th id="second">Second</th>
+                        <td id="twoInit"></td>
+                        <td id="twoScore"></td>
                     </tr>
                     <tr>
                         <th id="third">Third</th>
+                        <td id="threeInit"></td>
+                        <td id="threeScore"></td>
                     </tr>
                 </table>
 
@@ -41,7 +47,7 @@
             <div class="controls">
                 <button id="start-btn" class="btn">Start</button>
                 <button id="next-btn" class="btn hide">Next</button>
-                <button id="submit-btn" class="btn ">Submit</button>
+                <button id="submit-btn" class="btn hide">Submit</button>
                 <button id="again-btn" class="btn hide">Play again</button>
             </div>
             

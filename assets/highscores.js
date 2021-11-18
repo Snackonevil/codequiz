@@ -3,13 +3,21 @@ var first = document.getElementById('first');
 var second = document.getElementById('second');
 var third = document.getElementById('third');
 
+var oneInit = document.getElementById('oneInit');
+var oneScore = document.getElementById('oneScore');
+
+const twoInit = document.getElementById('twoInit');
+const twoScore = document.getElementById('twoScore');
+
+const threeInit = document.getElementById('threeInit');
+const threeScore = document.getElementById('threeScore');
+
 var inputBox = document.getElementById('input');
 const againBtn = document.getElementById('again-btn')
 
 
 
 
-var arrayy = [['sdf', 5], ['ggg', 10]]
 
 
 
@@ -19,39 +27,35 @@ let letsPlay = (e) => {
 }
 
 let submitScore = () => {
+    var scores = JSON.parse(localStorage.getItem('scores'));
     var playerScore = [inputBox.value, currScore]
-
-    arrayy.push(playerScore);
-    arrayy.sort(([a , b], [c, d]) => d - b);
-
-
-    console.log(arrayy)
-    
-}
+    if (scores === null) {
+        localStorage.setItem("scores", JSON.stringify([playerScore]))
+    } else {
+        scores.push(playerScore);
+        scores.sort(([a , b], [c, d]) => d - b);
+        localStorage.setItem("scores", JSON.stringify(scores))
+        writeScores();
+    } 
+};
 
 let writeScores = () => {
+    var scores = JSON.parse(localStorage.getItem('scores'));
+
+    if (scores.length >= 0) {
+    oneInit.textContent = scores[0][0]
+    oneScore.textContent = scores[0][1]
+    }
     
-    // var oneScore = document.createElement('td')
-    // var oneInit = document.createElement('td')
-    // first.insertAdjacentElement('afterend', oneScore)
-    // first.insertAdjacentElement('afterend', oneInit)
-    // oneInit.textContent = 
-    // oneScore.textContent = 
-    // var twoScore = document.createElement('td')
-    // var twoInit = document.createElement('td')
-    // second.insertAdjacentElement('afterend', twoScore)
-    // second.insertAdjacentElement('afterend', twoInit)
-    // twoInit.textContent = 'hello'
-    // twoScore.textContent = 'there'
-    // var threeScore = document.createElement('td')
-    // var threeInit = document.createElement('td')
-    // third.insertAdjacentElement('afterend', threeScore)
-    // third.insertAdjacentElement('afterend', threeInit)
-    // threeInit.textContent = 'hello'
-    // threeScore.textContent = 'there'
-    // console.log(inputBox.value);
-  
-    // location.href = './scores.html'
-}
+    if (scores.length >= 1) {
+    twoInit.textContent = scores[1][0]
+    twoScore.textContent = scores[1][1]
+    }
+
+    if (scores.length >= 2) {
+    threeInit.textContent = scores[2][0]
+    threeScore.textContent = scores[2][1]
+    }
+};
 
 againBtn.addEventListener('click', letsPlay)
