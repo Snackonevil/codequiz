@@ -105,19 +105,22 @@ header > a {
     display: none;
 }
 
-.input {
+input {
     display: block;
     width: 30%;
     height: 30px;
     margin: 20px auto;
     font-size: large;
+    padding: 10px;
+    text-align: center;
 }
 
 .scoretable {
     width: 100%;
     border-collapse: collapse;
-
     padding: 10px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
 }
 
 th {

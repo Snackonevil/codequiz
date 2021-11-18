@@ -14,37 +14,34 @@
     </header>
     <main>
         <div id="quiz-container">
-            <div id="question-block" class="hide">
+
+            <div id="question-block" class="">
                 <h1 id="question-txt"></h1>
                 <div id="answer-block" class="">
                 </div>
             </div>
 
-            <div id="form-container" class="hide">
+            <div id="form-container" class="">
                 <table class="scoretable">
                     <tr>
-                        <th>First</th>
-                        <td>initial</td>
-                        <td>score</td>
+                        <th id="first">First</th>
                     </tr>
                     <tr>
-                        <th>Second</th>
-                        <td>initial</td>
-                        <td>score</td>
+                        <th id="second">Second</th>
                     </tr>
                     <tr>
-                        <th>Third</th>
-                        <td>initial</td>
-                        <td>score</td>
+                        <th id="third">Third</th>
                     </tr>
                 </table>
-                <input class="input" type="text" placeholder="Enter your initials" maxlength="3">
+
+                <input id="input" type="text" style="text-transform: uppercase" placeholder="initials" maxlength="3">
+
             </div>
 
             <div class="controls">
                 <button id="start-btn" class="btn">Start</button>
                 <button id="next-btn" class="btn hide">Next</button>
-                <button id="submit-btn" class="btn hide">Submit</button>
+                <button id="submit-btn" class="btn ">Submit</button>
                 <button id="again-btn" class="btn hide">Play again</button>
             </div>
             

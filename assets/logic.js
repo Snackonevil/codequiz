@@ -11,11 +11,8 @@ const timer = document.getElementById('timer');
 const startBtn = document.getElementById('start-btn');
 const submitBtn = document.getElementById('submit-btn');
 const nextBtn = document.getElementById('next-btn');
-
-const scoreList = document.getElementById('list-container')
-
-
-// var answerBtns = document.getElementsByClassName('answer-btn');
+const scoreTable = document.getElementById('form-container')
+var initials = document.getElementById('input')
 
 
 // Starts Quiz
@@ -24,7 +21,6 @@ let letsGo = () => {
   startBtn.classList.add("hide");
   questionBlock.classList.remove("hide");
   answerBlock.classList.remove("hide")
-  // nextBtn.classList.remove("hide")
   questionText.textContent = questions[currQues].text// writes question text
 
   // writes following question
@@ -102,15 +98,16 @@ let quizEnd = () => {
 
 let toScores = () => {
   questionText.textContent = 'Your Score: ' + currScore;
-  scoreList.classList.remove('hide')
+  scoreTable.classList.remove('hide')
   nextBtn.classList.add('hide')
   submitBtn.classList.remove('hide')
   startBtn.classList.add('hide')
 }
 
-let enterScore = (input) => {
-  input
-  location.href = '.scores.html'
+let enterScore = () => {
+  submitScore();
+  writeScores();
+
 }
 
 //function to get the quiz going 
@@ -160,3 +157,4 @@ let enterScore = (input) => {
 startBtn.addEventListener('click', letsGo)
 answerBlock.addEventListener('click', submitAns)
 nextBtn.addEventListener('click', toScores);
+submitBtn.addEventListener('click', enterScore)
