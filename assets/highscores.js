@@ -26,7 +26,8 @@ let letsPlay = (e) => {
     location.href = './index.html'
 }
 
-let submitScore = () => {
+let submitScore = (e) => {
+    e.preventDefault;
     location.href = './scores.html'
     var scores = JSON.parse(localStorage.getItem('scores'));
     var playerScore = [inputBox.value, currScore]
