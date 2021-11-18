@@ -27,8 +27,7 @@ let letsPlay = (e) => {
 }
 
 let submitScore = (e) => {
-    e.preventDefault;
-    location.href = './scores.html'
+
     var scores = JSON.parse(localStorage.getItem('scores'));
     var playerScore = [inputBox.value, currScore]
     if (scores === null) {
@@ -39,7 +38,8 @@ let submitScore = (e) => {
         localStorage.setItem("scores", JSON.stringify(scores))
         writeScores();
     }
-
+    e.preventDefault();
+    location.href = './scores.html'
 };
 
 let writeScores = () => {

@@ -103,7 +103,7 @@ let toScores = () => {
   submitBtn.classList.remove('hide')
   startBtn.classList.add('hide')
   writeScores();
-}
+};
 
 startBtn.addEventListener('click', letsGo)
 answerBlock.addEventListener('click', submitAns)
