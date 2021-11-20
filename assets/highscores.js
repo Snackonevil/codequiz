@@ -1,8 +1,3 @@
-
-var first = document.getElementById('first');
-var second = document.getElementById('second');
-var third = document.getElementById('third');
-
 const oneInit = document.getElementById('oneInit');
 const oneScore = document.getElementById('oneScore');
 
@@ -15,12 +10,13 @@ const threeScore = document.getElementById('threeScore');
 var inputBox = document.getElementById('input');
 const againBtn = document.getElementById('again-btn')
 
-
+// Restarts quiz at index.html
 let letsPlay = (e) => {
     e.preventDefault();
     location.href = './index.html'
 }
 
+// Retrieves stored scores, adds the new score, sorts them, then sets them into local storage
 let submitScore = (e) => {
 
     var scores = JSON.parse(localStorage.getItem('scores'));
@@ -29,14 +25,16 @@ let submitScore = (e) => {
         localStorage.setItem("scores", JSON.stringify([playerScore]))
     } else {
         scores.push(playerScore);
-        scores.sort(([a , b], [c, d]) => d - b);
+        scores.sort(([a , b], [c, d]) => d - b);// Sorts scores highest to lowest
         localStorage.setItem("scores", JSON.stringify(scores))
         writeScores();
     }
+    // Goes to score page
     e.preventDefault();
     location.href = './scores.html'
 };
 
+// Writes the top three scores to the leaderboard table
 let writeScores = () => {
     var scores = JSON.parse(localStorage.getItem('scores'));
 
