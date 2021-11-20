@@ -41,7 +41,7 @@ let startClock = () => {
       clearInterval(countDown);
       return quizEnd();
     } else if (currTime <= 10){
-      timer.setAttribute("style", "color: red")
+      timer.setAttribute("style", "color: red") // Timer turns red with 10 seconds left
     }
   }, 1000);
 };
@@ -71,21 +71,25 @@ let nextQuest = () => {
       button.setAttribute('data-correct', 'correct')
     }
   })
-  currQues++; // Next question object
+  currQues++; // Next question object in questions array
 };
 
+// Checks if selected answer is correct or incorrect
 let submitAns = (e) => {
-  if (e.target.dataset.correct === "correct") {
+  var correctAns = e.target.dataset.correct
+  if (correctAns === "correct") {
     alert('CORRECT');
-    currScore += 5;
+    currScore += 5; // Add 5 points on a correct answer
     nextQuest();
   } else {
     alert('incorrect');
     nextQuest();
-    currTime -= 5;
+    currTime -= 5; // Subtracts 5 seconds on a wrong answer
   }
+
 };
 
+// Changes quiz state to end page
 let quizEnd = () => {
   currTime = 0
   timer.textContent = ''
@@ -96,7 +100,11 @@ let quizEnd = () => {
   nextBtn.classList.remove("hide")
 };
 
+// Changes quiz state to form for initials
 let toScores = () => {
+  if (currScore < threeScore.value) {
+    inputBox.classList.add('hide')
+  }
   questionText.textContent = 'Your Score: ' + currScore;
   scoreTable.classList.remove('hide')
   nextBtn.classList.add('hide')

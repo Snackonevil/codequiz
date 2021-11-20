@@ -3,8 +3,8 @@ var first = document.getElementById('first');
 var second = document.getElementById('second');
 var third = document.getElementById('third');
 
-var oneInit = document.getElementById('oneInit');
-var oneScore = document.getElementById('oneScore');
+const oneInit = document.getElementById('oneInit');
+const oneScore = document.getElementById('oneScore');
 
 const twoInit = document.getElementById('twoInit');
 const twoScore = document.getElementById('twoScore');
@@ -14,11 +14,6 @@ const threeScore = document.getElementById('threeScore');
 
 var inputBox = document.getElementById('input');
 const againBtn = document.getElementById('again-btn')
-
-
-
-
-
 
 
 let letsPlay = (e) => {
